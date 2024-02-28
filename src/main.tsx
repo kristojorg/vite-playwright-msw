@@ -9,6 +9,10 @@ async function enableMocking() {
   }
   console.log("Not Enabling mocking");
 
+  // This is commented out because we don't want to use the service worker
+  // to mock requests in playwright. We want to use playwright-msw and playwrights
+  // built in route mocking.
+
   // const { worker } = await import("./msw/browser");
 
   // `worker.start()` returns a Promise that resolves

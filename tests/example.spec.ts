@@ -1,6 +1,7 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./test";
 
 test("gets 200, from msw", async ({ page }) => {
+  // this does work, but we want to use MSW to define our mocks.
   // await page.route("**/posts", (route) => {
   //   route.fulfill({
   //     status: 200,

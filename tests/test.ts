@@ -9,7 +9,10 @@ const test = base.extend<{
   worker: MockServiceWorker;
   http: typeof http;
 }>({
-  worker: createWorkerFixture(handlers),
+  worker: createWorkerFixture(handlers, {
+    // don't wait for page load because local requests hsould be passed through
+    waitForPageLoad: false,
+  }),
   http,
 });
 
