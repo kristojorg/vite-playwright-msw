@@ -1,41 +1,24 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import useSWR from "swr";
 
 const POSTS_API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const { data } = useSWR(POSTS_API_URL, (url) =>
+  const { data, mutate } = useSWR(POSTS_API_URL, (url) =>
     fetch(url).then((res) => res.json())
   );
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      <h1>Example showing failing playwright-msw integration</h1>
+      <p>
+        Below, we are fetching posts from {POSTS_API_URL}. The real API has 100
+        posts in it. Our mocks are set up to have 200 posts.
+      </p>
       <div className="card">
         {data ? <p>Number of posts is {data.length}</p> : <p>Loading...</p>}
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button onClick={() => mutate()}>Refetch</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
